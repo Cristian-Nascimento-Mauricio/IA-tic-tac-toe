@@ -6,6 +6,10 @@ const player = {
 }
 
 async function myMove(pos){
+
+    document.getElementById('button-ai').disabled = true;
+
+
     if(!player.canIPlay) return
     
     let element = document.getElementById(`pos${pos.row}-${pos.col}`)
@@ -17,8 +21,14 @@ async function myMove(pos){
     element.textContent = "X"
     element.setAttribute("data","X")
 
-    await delay(100)
+    addItemScoreboard("X", pos)
 
+    await delay(100)
+    
+    if(isBoardFull(getBoard())) {
+        alert('Empate !')
+        return
+    }
     let resul = didAnyoneWin(getBoard());
     
     if (resul) {
@@ -59,12 +69,28 @@ async function myMove(pos){
 
 }
 
-function iaMove(pos){
+async function iaMove(pos){
 
     let element = document.getElementById(`pos${pos.row}-${pos.col}`)
 
+    addItemScoreboard("O",pos)
+
     element.textContent = "O"
     element.setAttribute("data","O")
+
+    await delay(100)
+
+    if(isBoardFull(getBoard())) {
+        alert('Empate !')
+        return
+    }
+    let resul = didAnyoneWin(getBoard());
+    
+    if (resul) {
+        alert("O O venceu!");
+        return
+    }
+
 
 }
 
@@ -117,6 +143,71 @@ function didAnyoneWin(borad){
 
 }
 
+function isBoardFull(board){
+    for(let row = 0; row < 3 ; row++)
+        for (let col = 0; col < 3;col++)
+            if (board[row][col] == "" ) return false
+
+    return true
+}
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function addItemScoreboard(player , pos){
+    
+    let scoreboard = document.getElementById('scoreboard')
+
+    let tr = document.createElement('tr')
+
+    let childPlayer = document.createElement('th')
+    let childPos = document.createElement('th')
+
+    childPlayer.innerText = player
+    childPos.innerText = `${ Number(pos.row) + 1} - ${(Number(pos.col) + 1)}`
+
+    tr.append(childPlayer,childPos)
+
+    scoreboard.append(tr)
+
+
+}
+
+function iaFirst(){
+
+    postMove()
+    .then(res => {
+        if(res.status == 422){
+            alert('Tabuleiro cheio')
+            error()
+
+        }
+
+        return res.json()
+    })
+    .then(async data =>{        
+        iaMove(data)
+        
+        await delay(100)
+
+        let resul = didAnyoneWin(getBoard());
+        
+        if (resul) {
+            alert("O O venceu!");
+            return
+        }
+        
+        player.canIPlay = true
+
+    })
+    .catch((res)=>{
+        console.error(res)
+        alert("Erro de conexão, renicie o jogo !")
+
+    })
+
+    document.getElementById('button-ai').disabled = true;
+
+
 }

@@ -4,22 +4,119 @@
     padding: 0px;
 }
 
+header {
+    display: flex;
+    position: relative;
+    box-shadow: 0px 0px 15px black;
+    padding: 0px 5%;
+    justify-content: center;
+    align-items: center;
+    background-color: #00005D;
+    margin-bottom: 50px;
+    width: 100%;
+    height: 50px;
+
+
+}
+
+header .title {
+    color: white;
+    font-size: 32px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+header img {
+    position: absolute;
+    left: 5%;
+    height: 60%;
+    
+}
+
 main { 
     display: flex;
+    position: relative;
     width: 100%;
+    gap: auto;
     height: fit-content;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.container > * {
+    margin: auto;
+}
+
+.scoreboard {
+    width: 350px;
+    height: 100%;
+    left: 5%;
+
+}
+
+.scoreboard-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: lightslategrey;
+}
+
+.scoreboard table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaço entre as bordas das células */
+
+
+}
+
+.scoreboard thead {
+    display: flex;
+    align-items: center;
+    background-color: aquamarine;
+    height: 50px;
+
+}
+
+.scoreboard tbody {
+    height: fit-content;
+
+}
+
+.scoreboard th, td , tr{
+    border: 1px solid black; /* Borda preta de 1px */
+    padding: 8px;
+    text-align: center;
+}
+.scoreboard tr {
+    height: 35px;
+}
+
+.span-button-ai {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px auto;
+
 
 }
 
 #tic-tac-toe {
     display: grid;
-    margin: auto;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     width: 80%;
     max-width: 500px;
     aspect-ratio: 1/1;
-    background-color: grey;
+    background-color: honeydew;
 }
 
 .pos {
@@ -27,7 +124,6 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 128px;
-    background-color: aqua;
     width: 100%;
     height: 100%;
 

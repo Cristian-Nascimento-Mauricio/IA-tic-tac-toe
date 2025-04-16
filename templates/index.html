@@ -8,37 +8,65 @@
     <title>Algoritmo de MiniMax </title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <img src="{{ url_for('static', filename='imgs/UCP.png') }}">
+
+        <p class="title">AI - jogo da velha</p>
+    </header>
     <main>
-        <div id="tic-tac-toe">
-            <span class="pos" id="pos0-0" data="" onclick="myMove({row:'0',col:'0'})">
-             
-            </span>
-            <span class="pos" id="pos0-1" data="" onclick="myMove({row:'0',col:'1'})">
-     
-            </span>
-            <span class="pos" id="pos0-2" data="" onclick="myMove({row:'0',col:'2'})">
-     
-            </span>
-            <span class="pos" id="pos1-0" data="" onclick="myMove({row:'1',col:'0'})">
-     
-            </span>
-            <span class="pos" id="pos1-1" data="" onclick="myMove({row:'1',col:'1'})">
-     
-            </span>
-            <span class="pos" id="pos1-2" data="" onclick="myMove({row:'1',col:'2'})">
-     
-            </span>
-            <span class="pos" id="pos2-0" data="" onclick="myMove({row:'2',col:'0'})">
-     
-            </span>
-            <span class="pos" id="pos2-1" data="" onclick="myMove({row:'2',col:'1'})">
-     
-            </span>
-            <span class="pos" id="pos2-2" data="" onclick="myMove({row:'2',col:'2'})">
-     
-            </span>
-         </div>
+        <div  class="container">
+        
+            <div>
+                <div class="scoreboard">
+                    <span class="scoreboard-title">
+                        <p>Histórico de jogadas</p>
+                    </span>
+                    <table>
+                        <tbody id="scoreboard">
+    
+                        </tbody>
+                    </table>
+                </div>
+                <span class="span-button-ai" >
+                    <button onclick="iaFirst()" id="button-ai">IA joga antes</button>
+                </span>
+            </div>
+
+
+            <div id="tic-tac-toe">
+                <span class="pos" id="pos0-0" data="" onclick="myMove({row:'0',col:'0'})">
+                
+                </span>
+                <span class="pos" id="pos0-1" data="" onclick="myMove({row:'0',col:'1'})">
+        
+                </span>
+                <span class="pos" id="pos0-2" data="" onclick="myMove({row:'0',col:'2'})">
+        
+                </span>
+                <span class="pos" id="pos1-0" data="" onclick="myMove({row:'1',col:'0'})">
+        
+                </span>
+                <span class="pos" id="pos1-1" data="" onclick="myMove({row:'1',col:'1'})">
+        
+                </span>
+                <span class="pos" id="pos1-2" data="" onclick="myMove({row:'1',col:'2'})">
+        
+                </span>
+                <span class="pos" id="pos2-0" data="" onclick="myMove({row:'2',col:'0'})">
+        
+                </span>
+                <span class="pos" id="pos2-1" data="" onclick="myMove({row:'2',col:'1'})">
+        
+                </span>
+                <span class="pos" id="pos2-2" data="" onclick="myMove({row:'2',col:'2'})">
+        
+                </span>
+            </div>
+        
+
+        </div>
+
+
     </main>
 
 </body>
