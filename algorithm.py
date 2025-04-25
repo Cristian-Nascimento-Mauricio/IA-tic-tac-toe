@@ -38,7 +38,7 @@ def voidSpace(board):
     return list            
 
 
-def bestAction(board,player="O"):
+def bestAction(board,player="O",winner="O",loser="X"):
 
     possibilityMove = voidSpace(board)
     bestMove = None
@@ -46,17 +46,17 @@ def bestAction(board,player="O"):
 
     for possibility in possibilityMove:
         board[possibility[0]][possibility[1]] = player
-        value = miniMax(board,player)
+        value = miniMax(board,player,winner,loser)
         board[possibility[0]][possibility[1]] = ""
 
         if bestValue is None:
             bestMove = possibility
             bestValue = value
-        elif player == "O":
+        elif player == winner:
             if value > bestValue:
                 bestValue = value
                 bestMove = possibility
-        elif player == "X":    
+        elif player == loser:    
             if value < bestValue:
                 bestValue = value
                 bestMove = possibility
@@ -66,21 +66,20 @@ def bestAction(board,player="O"):
 
 
 def futureMove(board,pos,player="O"):
-    copyBoard = copy.deepcopy(board)  # Cópia profunda
+    copyBoard = copy.deepcopy(board)  
     copyBoard[pos[0]][pos[1]] = player
     return copyBoard
 
 
 
+def miniMax(board,player="O",winner="O",loser="X"):
 
-def miniMax(board,player="O"):
+    playerWinner = didAnyoneWin(board)
 
-    winner = didAnyoneWin(board)
-
-    if winner: 
-        if winner == "X":
+    if playerWinner: 
+        if playerWinner == loser:
             return -1
-        elif winner == "O":
+        elif playerWinner == winner:
             return 1
         else:
             return 0    
@@ -92,15 +91,15 @@ def miniMax(board,player="O"):
 
     for possibility in possibilityMove:
         board[possibility[0]][possibility[1]] = player
-        value = miniMax(board,player)
+        value = miniMax(board,player,winner,loser)
         board[possibility[0]][possibility[1]] = ""
 
         if bestValue is None:
             bestValue = value
-        elif player == "O":
+        elif player == winner:
             if value > bestValue:
                 bestValue = value
-        elif player == "X":    
+        elif player == loser:    
             if value < bestValue:
                 bestValue = value
 
